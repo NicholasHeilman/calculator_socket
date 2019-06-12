@@ -1,0 +1,14 @@
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+    height: 5em;
+    flex: 1;
+    font-size: 1.4em;
+    outline: 1px solid #888888
+}
+
+.operator {
+    background-color: #fe9241
+}
