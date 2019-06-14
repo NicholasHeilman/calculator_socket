@@ -6,7 +6,6 @@ import KeyPad from "./components/KeyPad/KeyPad";
 class App extends Component {
     constructor(){
         super();
-
         this.state = {
             result: ""
         }
@@ -16,16 +15,11 @@ class App extends Component {
 
         if(button === "="){
             this.calculate()
-        }
-
-        else if(button === "C"){
+        } else if(button === "C"){
             this.reset()
-        }
-        else if(button === "CE"){
+        } else if(button === "CE"){
             this.backspace()
-        }
-
-        else {
+        } else {
             this.setState({
                 result: this.state.result + button
             })
@@ -37,13 +31,9 @@ class App extends Component {
         var checkResult = ''
         if(this.state.result.includes('--')){
             checkResult = this.state.result.replace('--','+')
-        }
-
-        else {
+        } else {
             checkResult = this.state.result
-        }
-
-        try {
+        } try {
             this.setState({
                 // eslint-disable-next-line
                 result: (eval(checkResult) || "" ) + ""
@@ -52,7 +42,6 @@ class App extends Component {
             this.setState({
                 result: "error"
             })
-
         }
     };
 
