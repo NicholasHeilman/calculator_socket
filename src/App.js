@@ -1,51 +1,85 @@
 import React, { Component } from 'react';
-import DisplayComponent from './components/DisplayComponent/DisplayComponent';
 import './App.css';
-import KeyPad from './components/KeyPad/KeyPad';
-
+import Display from './components/Display/Display';
+import KeyPad from "./components/KeyPad/KeyPad";
 
 class App extends Component {
-  constructor() {
-    super();
-    this.state ={
-      result: ""
+    constructor(){
+        super();
+
+        this.state = {
+            result: ""
+        }
+    }
+
+    onClick = button => {
+
+        if(button === "="){
+            this.calculate()
+        }
+
+        else if(button === "C"){
+            this.reset()
+        }
+        else if(button === "CE"){
+            this.backspace()
+        }
+
+        else {
+            this.setState({
+                result: this.state.result + button
+            })
+        }
     };
-  }
 
-  onClick = button => {
-    console.log('Click');
-  }
 
-  //  addInput = val => {
-  //    console.log('click');
-  //    if(val === "="){
-  //      this.equate()
-  //    } 
-  //    else if (val === "Clear"){
-  //      this.reset()
-  //    }
-  //    else if(val === "CE"){
-  //      this.backspace()
-  //    }
-  //    else {
-  //      this.setState({
-  //        result: this.state.result + val
-  //      })
-  //    }
-  //  };
+    calculate = () => {
+        var checkResult = ''
+        if(this.state.result.includes('--')){
+            checkResult = this.state.result.replace('--','+')
+        }
 
-render() {
-  return (
+        else {
+            checkResult = this.state.result
+        }
 
-    <div className="App">
-      
-      <div className="calculator">
-        <DisplayComponent result={this.state.result} />
-        <KeyPad onClick={this.onClick}/>
-      </div>
-    </div>
-    );
-  }
+        try {
+            this.setState({
+                // eslint-disable-next-line
+                result: (eval(checkResult) || "" ) + ""
+            })
+        } catch (e) {
+            this.setState({
+                result: "error"
+            })
+
+        }
+    };
+
+    reset = () => {
+        this.setState({
+            result: ""
+        })
+    };
+
+    backspace = () => {
+        this.setState({
+            result: this.state.result.slice(0, -1)
+        })
+    };
+
+    render() {
+        return (
+            <div className="App">
+                <div className="calculator">
+                  <div className="row">
+                    <Display result={this.state.result}/>
+                  </div>
+                    <KeyPad onClick={this.onClick}/>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;

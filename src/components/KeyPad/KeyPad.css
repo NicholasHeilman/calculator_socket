@@ -1,4 +1,4 @@
-.btn{
+.btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,6 +8,11 @@
     font-size: 1.4em;
     outline: 1px solid #888888
 }
+
+.row {
+    display: flex;
+    width: 100%;
+  }
 
 .operator {
     background-color: #fe9241
