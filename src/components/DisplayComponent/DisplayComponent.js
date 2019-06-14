@@ -4,10 +4,10 @@ import './DisplayComponent.css';
 class DisplayComponent extends Component {
     
     render() {
-       
+       let {result} = this.props;
         return (
             <div className="display">
-                {this.props.children}
+                <p>{result}</p>
             </div>
         );
     }
