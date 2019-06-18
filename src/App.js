@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import './App.css';
 import Display from './components/Display/Display';
 import KeyPad from "./components/KeyPad/KeyPad";
+import History from "./components/History/History";
 
 class App extends Component {
     constructor(){
         super();
         this.state = {
-            result: ""
+            result: "",
+            history: [],
         }
     }
+  
+    answer = [];
 
     onClick = button => {
-
         if(button === "="){
             this.calculate()
         } else if(button === "C"){
@@ -25,7 +28,6 @@ class App extends Component {
             })
         }
     };
-
 
     calculate = () => {
         var checkResult = ''
@@ -42,8 +44,12 @@ class App extends Component {
             this.setState({
                 result: "error"
             })
-        }
-    };
+        } 
+        this.setState({
+            history: [...this.state.history, this.state.result]
+        });
+        console.log(this.state.history);
+      }
 
     reset = () => {
         this.setState({
@@ -62,9 +68,12 @@ class App extends Component {
             <div className="App">
                 <div className="calculator">
                   <div className="row">
-                    <Display result={this.state.result}/>
+                    <Display result={this.state.result} />
                   </div>
-                    <KeyPad onClick={this.onClick}/>
+                    <KeyPad onClick={this.onClick} />
+                </div>
+                <div>
+                  <History history={this.state.history} />
                 </div>
             </div>
         );

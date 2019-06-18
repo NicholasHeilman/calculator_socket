@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './Display.css';
 
-class DisplayComponent extends Component {
-    
+class Display extends Component {
+
     render() {
        let {result} = this.props;
         return (
@@ -13,4 +13,4 @@ class DisplayComponent extends Component {
     }
 }
 
-export default DisplayComponent;
+export default Display;
