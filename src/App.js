@@ -72,7 +72,7 @@ class App extends Component {
                   </div>
                     <KeyPad onClick={this.onClick} />
                 </div>
-                <div>
+                <div className="history">
                   <History history={this.state.history} />
                 </div>
             </div>
